@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: default
+  name: config
+data:
+  config.yaml: |
+    prowjob_namespace: default
+    pod_namespace: test-pods
+    periodics:
+    - interval: 1m
+      name: try-out-prow-plus-tekton
+      agent: tekton-pipeline
+      always_run: true
+      # rerun_command: "/run try-out-tekton"
+      # trigger: "(?m)^/run (all|try-out-tekton),?(\\s+|$)"
+      pipeline_run_spec:
+        trigger: # Required by versions 0.2.0 - v0.3.1 of Tekton Pipelines https://github.com/kubernetes/test-infra/issues/13948
+          type: manual
+        pipelineRef:
+          name: tutorial-pipeline
+        resources:
+        - name: source-repo
+          resourceRef: 
+            name: skaffold-git
+        - name: web-image
+          resourceRef: 
+            name: distroless-java

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: default
+  name: plugins
+data:
+  plugins.yaml: |
+    plugins:
+      kerinin:
+        - trigger

@@ -1,0 +1,15 @@
+resources:
+- starter.yaml
+- config.yaml
+- plugins.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+- name: hmac-token
+  literals:
+  - hmac=c28895f43aa63c6135a164361b232d8d6c809854
+- name: oauth-token
+  files:
+  - secrets/oauth
