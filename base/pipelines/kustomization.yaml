@@ -1,0 +1,4 @@
+resources:
+- task.yaml
+- pipeline-resource.yaml
+- pipeline.yaml
